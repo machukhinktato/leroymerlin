@@ -1,5 +1,7 @@
 import scrapy
 from scrapy.http import HtmlResponse
+from pprint import pprint
+from scrapy.loader import ItemLoader
 
 
 class LmruSpider(scrapy.Spider):
@@ -10,9 +12,11 @@ class LmruSpider(scrapy.Spider):
     def parse(self, response:HtmlResponse):
         links = response.xpath("//a[@slot='name']/@href")
         for link in links:
-            yield response.follow(item, callback=parse_leroy)
+            yield response.follow(link, callback=self.parse_leroy)
         print()
         pass
 
     def parse_leroy(self, response:HtmlResponse):
-        pass
+        name = response.xpath("//h1/text()").extract_first()
+        params = response.xpath("//dl[@class='def-list']")
+        print()
