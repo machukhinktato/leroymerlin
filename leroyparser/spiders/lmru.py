@@ -2,6 +2,7 @@ import scrapy
 from scrapy.http import HtmlResponse
 from pprint import pprint
 from scrapy.loader import ItemLoader
+from leroyparser.items import LeroyparserItem
 
 
 class LmruSpider(scrapy.Spider):
@@ -17,6 +18,7 @@ class LmruSpider(scrapy.Spider):
         pass
 
     def parse_leroy(self, response:HtmlResponse):
-        name = response.xpath("//h1/text()").extract_first()
-        params = response.xpath("//dl[@class='def-list']")
+        loader = ItemLoader(item=LeroyparserItem(),response=response)
+        loader.add_xpath('name', response.xpath("//h1/text()").extract_first())
+        # params = response.xpath("//dl[@class='def-list']")
         print()
