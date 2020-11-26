@@ -18,6 +18,16 @@ class LeroyparserPipeline:
 
 class LeroyPhotosPipeline(ImagesPipeline):
     def get_media_requests(self, item, info):
-        print()
-        # if item['name']
+        if item['photo']:
+            for img in item['photo']:
+                try:
+                    yield scrapy.Request(img)
+                except Exception as e:
+                    print(e)
+
+        return item
+
+    def item_completed(self, results, item, info):
+        if results:
+            item['photo'] = [itm[1] for itm in results if itm[0]]
         return item
