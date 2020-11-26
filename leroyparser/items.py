@@ -11,5 +11,6 @@ class LeroyparserItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field(output_processor=TakeFirst())
     price = scrapy.Field(output_processor=TakeFirst())
+    url = scrapy.Field(output_processor=TakeFirst())
     print()
 
