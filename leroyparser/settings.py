@@ -36,7 +36,7 @@ CONCURRENT_REQUESTS = 16
 #CONCURRENT_REQUESTS_PER_IP = 16
 
 # Disable cookies (enabled by default)
-#COOKIES_ENABLED = False
+COOKIES_ENABLED = True
 
 # Disable Telnet Console (enabled by default)
 #TELNETCONSOLE_ENABLED = False
@@ -69,6 +69,7 @@ CONCURRENT_REQUESTS = 16
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'leroyparser.pipelines.LeroyparserPipeline': 300,
+   'leroyparser.pipelines.LeroyPhotosPipeline': 290,
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
