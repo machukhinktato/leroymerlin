@@ -20,6 +20,8 @@ class LmruSpider(scrapy.Spider):
     def parse_leroy(self, response:HtmlResponse):
         loader = ItemLoader(item=LeroyparserItem(),response=response)
         loader.add_xpath('name', "//h1/text()")
+        loader.add_xpath('price', "//span[@slot='price']/text()")
+        # loader.add_value('url', "//span[@slot='price']/text()", response.url)
         print()
         yield loader.load_item()
         # params = response.xpath("//dl[@class='def-list']")
