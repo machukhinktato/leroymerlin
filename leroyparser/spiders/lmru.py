@@ -21,6 +21,7 @@ class LmruSpider(scrapy.Spider):
         loader = ItemLoader(item=LeroyparserItem(),response=response)
         loader.add_xpath('name', "//h1/text()")
         loader.add_xpath('price', "//span[@slot='price']/text()")
+        loader.add_xpath('photo', "//img[@alt='product image']/@src")
         loader.add_value('url', response.url)
         print()
         yield loader.load_item()
