@@ -8,12 +8,15 @@
 import scrapy
 from itemadapter import ItemAdapter
 from scrapy.pipelines.images import ImagesPipeline
+from numpy import array_split
 
 
 class LeroyparserPipeline:
     def process_item(self, item, spider):
-
-        print()
+        item['desc'] = dict(zip(
+            item['desc'][:len(item['desc']) // 2],
+            item['desc'][len(item['desc']) // 2:]))
+        # print()
         return item
 
 
