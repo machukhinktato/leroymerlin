@@ -24,6 +24,8 @@ class LmruSpider(scrapy.Spider):
         loader.add_xpath('photo', "//img[@alt='product image']/@src")
         loader.add_xpath('term', "//dl//dt/text()")
         loader.add_xpath('definition', "//dl//dd/text()")
+        # loader.add_xpath('banana', "//dl//dt/text()")
+        # loader.add_xpath('banana', "//dl//dd/text()")
         loader.add_value('url', response.url)
         print()
         yield loader.load_item()
