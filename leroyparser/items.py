@@ -6,7 +6,6 @@
 import scrapy
 from scrapy.loader.processors import TakeFirst
 from scrapy.loader.processors import MapCompose
-from scrapy.loader.processors import Join
 
 
 def convert_to_int(string):
@@ -14,7 +13,7 @@ def convert_to_int(string):
     return integer
 
 
-def text_beautify(string):
+def str_beautify(string):
     string = string.replace('\n', '').strip()
     return string
 
@@ -25,5 +24,5 @@ class LeroyparserItem(scrapy.Item):
     _id = scrapy.Field()
     photo = scrapy.Field(input_processor=MapCompose())
     url = scrapy.Field(output_processor=TakeFirst())
-    desc = scrapy.Field(input_processor=MapCompose(text_beautify))
+    desc = scrapy.Field(input_processor=MapCompose(str_beautify))
     # print()

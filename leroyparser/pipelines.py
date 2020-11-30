@@ -8,7 +8,8 @@
 import scrapy
 from itemadapter import ItemAdapter
 from scrapy.pipelines.images import ImagesPipeline
-
+import os
+from urllib.parse import urlparse
 
 
 class LeroyparserPipeline:
@@ -35,3 +36,6 @@ class LeroyPhotosPipeline(ImagesPipeline):
         if results:
             item['photo'] = [itm[1] for itm in results if itm[0]]
         return item
+
+    def file_path(self, request, response=None, info=None, *, item=None):
+        return str((item['name'])) + '/' + os.path.basename(urlparse(request.url).path)
