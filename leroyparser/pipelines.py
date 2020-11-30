@@ -12,6 +12,7 @@ from scrapy.pipelines.images import ImagesPipeline
 
 class LeroyparserPipeline:
     def process_item(self, item, spider):
+
         print()
         return item
 
