@@ -16,7 +16,7 @@ def convert_to_int(string):
 
 
 def text_beautify(string):
-    string = string.replace('\n', '').replace(' ', '')
+    string = string.strip()
     # banana.append(string)
     # print()
     # return banana
