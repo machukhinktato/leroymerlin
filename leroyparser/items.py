@@ -27,10 +27,10 @@ class LeroyparserItem(scrapy.Item):
     # define the fields for your item here like:
     name = scrapy.Field(output_processor=TakeFirst())
     price = scrapy.Field(input_processor=MapCompose(convert_to_int), output_processor=TakeFirst())
-    term = scrapy.Field(input_processor=MapCompose(text_beautify))
-    definition = scrapy.Field(input_processor=MapCompose(text_beautify))
+    # term = scrapy.Field(input_processor=MapCompose(text_beautify))
+    # definition = scrapy.Field(input_processor=MapCompose(text_beautify))
     _id = scrapy.Field()
     photo = scrapy.Field(input_proccesor=MapCompose())
     url = scrapy.Field(output_processor=TakeFirst())
-    # banana = scrapy.Field(input_proccesor=MapCompose(text_beautify))
+    banana = scrapy.Field(input_proccesor=MapCompose(text_beautify))
     print()
