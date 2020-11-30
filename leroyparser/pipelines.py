@@ -8,7 +8,7 @@
 import scrapy
 from itemadapter import ItemAdapter
 from scrapy.pipelines.images import ImagesPipeline
-from numpy import array_split
+
 
 
 class LeroyparserPipeline:

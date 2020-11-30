@@ -8,7 +8,6 @@ from scrapy.loader.processors import TakeFirst
 from scrapy.loader.processors import MapCompose
 from scrapy.loader.processors import Join
 
-banana = []
 
 def convert_to_int(string):
     integer = int(string.replace(' ', ''))
@@ -17,18 +16,12 @@ def convert_to_int(string):
 
 def text_beautify(string):
     string = string.replace('\n', '').strip()
-    # banana.append(string)
-    # print()
-    # return banana
     return string
 
 
 class LeroyparserItem(scrapy.Item):
-    # define the fields for your item here like:
     name = scrapy.Field(output_processor=TakeFirst())
     price = scrapy.Field(input_processor=MapCompose(convert_to_int), output_processor=TakeFirst())
-    # term = scrapy.Field(input_processor=MapCompose(text_beautify))
-    # definition = scrapy.Field(input_processor=MapCompose(text_beautify))
     _id = scrapy.Field()
     photo = scrapy.Field(input_processor=MapCompose())
     url = scrapy.Field(output_processor=TakeFirst())
