@@ -17,7 +17,7 @@ class LmruSpider(scrapy.Spider):
         for link in links:
             yield response.follow(link, callback=self.parse_leroy)
         if next_page:
-            yield response.follow(next_page, callback=self.parse())
+            yield response.follow(next_page, callback=self.parse)
 
 
     def parse_leroy(self, response: HtmlResponse):
