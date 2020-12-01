@@ -10,14 +10,25 @@ from itemadapter import ItemAdapter
 from scrapy.pipelines.images import ImagesPipeline
 import os
 from urllib.parse import urlparse
+from pymongo import MongoClient
 
 
 class LeroyparserPipeline:
+
+    def __init__(self):
+        db = MongoClient('localhost', 27017)
+        self.db = db.leroagoodslist
+
     def process_item(self, item, spider):
         item['desc'] = dict(zip(
             item['desc'][:len(item['desc']) // 2],
             item['desc'][len(item['desc']) // 2:]))
-        # print()
+        collection = self.mongo_base[spider.name]
+        try:
+            item['_id'] = collection.count_documents({}) + 1
+        except:
+            item['_id'] = 1
+        collection.insert_one(item)
         return item
 
 
