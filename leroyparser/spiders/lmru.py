@@ -7,18 +7,15 @@ from leroyparser.items import LeroyparserItem
 class LmruSpider(scrapy.Spider):
     name = 'lmru'
     allowed_domains = ['leroymerlin.ru']
-    # start_urls = ['https://leroymerlin.ru/search/?q=%D0%BA%D1%83%D0%B2%D0%B0%D0%BB%D0%B4%D0%B0']
     start_urls = ['https://leroymerlin.ru/search/?sortby=8&tab=products&q=%D1%83%D0%BD%D0%B8%D1%82%D0%B0%D0%B7']
 
     def parse(self, response: HtmlResponse):
         links = response.xpath("//a[@slot='name']/@href")
         next_page = response.xpath("//div[contains(@class, 'next-pag')]//@href").extract_first()
-        print()
         for link in links:
             yield response.follow(link, callback=self.parse_leroy)
         if next_page:
             yield response.follow(next_page, callback=self.parse)
-
 
     def parse_leroy(self, response: HtmlResponse):
         loader = ItemLoader(item=LeroyparserItem(), response=response)

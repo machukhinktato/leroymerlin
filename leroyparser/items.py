@@ -25,4 +25,3 @@ class LeroyparserItem(scrapy.Item):
     photo = scrapy.Field(input_processor=MapCompose())
     url = scrapy.Field(output_processor=TakeFirst())
     desc = scrapy.Field(input_processor=MapCompose(str_beautify))
-    # print()
