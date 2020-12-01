@@ -12,12 +12,12 @@ class LmruSpider(scrapy.Spider):
 
     def parse(self, response: HtmlResponse):
         links = response.xpath("//a[@slot='name']/@href")
-        pages = response.xpath("//div[contains(@class, 'next-pag')]//@href").extract_first()
+        next_page = response.xpath("//div[contains(@class, 'next-pag')]//@href").extract_first()
         print()
         for link in links:
             yield response.follow(link, callback=self.parse_leroy)
-        if pages:
-            yield response.follow(callback=self.)
+        if next_page:
+            yield response.follow(next_page, callback=self.parse())
 
 
     def parse_leroy(self, response: HtmlResponse):
